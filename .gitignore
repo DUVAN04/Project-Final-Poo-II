@@ -1,0 +1,30 @@
+# Archivos específicos de NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Archivos de configuración del usuario de NetBeans
+var/
+nb-configuration.xml
+
+# Archivos generados por el compilador de Java
+*.class
+
+# Archivos de log
+*.log
+
+# Paquetes y archivos comprimidos
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Archivos de dependencias (si usas Maven o Gradle)
+/target/
+.gradle/
+build/
