@@ -17,6 +17,7 @@ nb-configuration.xml
 *.log
 
 # Paquetes y archivos comprimidos
+!Dependencies/*.jar
 *.jar
 *.war
 *.ear
