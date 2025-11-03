@@ -5,6 +5,7 @@
 package cun.edu.co.main;
 
 import cun.edu.co.main.designer.Showpanel;
+import cun.edu.co.main.designer.Tickets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.formdev.flatlaf.FlatDarkLaf;
@@ -29,7 +30,7 @@ public class Main {
             .log(Level.SEVERE, "Error al establecer el Look and Feel", ex);
 }
         //creo la instancia de pantalla para que se muestre en el centro al ejecutarla
-        Showpanel screen = new Showpanel();
+        Tickets screen = new Tickets();
         screen.setVisible(true);
         screen.setLocationRelativeTo(null);
         
