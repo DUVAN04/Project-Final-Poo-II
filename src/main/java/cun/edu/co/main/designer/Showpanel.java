@@ -10,8 +10,10 @@ import cun.edu.co.main.Postgress_database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
 
 /**
  *
@@ -59,11 +61,13 @@ public class Showpanel extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         phone = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        viewdata = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Table.setAutoCreateRowSorter(true);
-        Table.setBackground(new java.awt.Color(102, 102, 102));
+        Table.setBackground(new java.awt.Color(0, 0, 0));
+        Table.setForeground(new java.awt.Color(255, 255, 255));
         Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -72,22 +76,22 @@ public class Showpanel extends javax.swing.JFrame {
                 "Nombre Completo", "Correo", "Cargo", "Gerencia", "Telefono", "Ubicación"
             }
         ));
-        Table.setShowGrid(false);
+        Table.setShowGrid(true);
         Table.setShowHorizontalLines(true);
         Table.setShowVerticalLines(true);
         jScrollPane1.setViewportView(Table);
 
-        newcontact.setBackground(new java.awt.Color(102, 102, 102));
-        newcontact.setFont(new java.awt.Font("sansserif", 2, 18)); // NOI18N
-        newcontact.setText("Ingresar Registro");
+        newcontact.setBackground(new java.awt.Color(153, 0, 0));
+        newcontact.setForeground(new java.awt.Color(0, 0, 0));
+        newcontact.setText("New Register");
         newcontact.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newcontactActionPerformed(evt);
             }
         });
 
-        deletecontact.setBackground(new java.awt.Color(102, 102, 102));
-        deletecontact.setFont(new java.awt.Font("sansserif", 2, 18)); // NOI18N
+        deletecontact.setBackground(new java.awt.Color(153, 0, 0));
+        deletecontact.setForeground(new java.awt.Color(0, 0, 0));
         deletecontact.setText("Delete Record");
         deletecontact.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,65 +99,85 @@ public class Showpanel extends javax.swing.JFrame {
             }
         });
 
-        savedata.setBackground(new java.awt.Color(102, 102, 102));
-        savedata.setFont(new java.awt.Font("sansserif", 2, 18)); // NOI18N
-        savedata.setText("Guardar Data en SQL");
+        savedata.setBackground(new java.awt.Color(0, 204, 255));
+        savedata.setForeground(new java.awt.Color(0, 0, 0));
+        savedata.setText("Save Data");
         savedata.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 savedataActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 2, 18)); // NOI18N
-        jLabel1.setText("Nombre Completo");
+        jLabel1.setFont(new java.awt.Font("Adwaita Sans", 0, 18)); // NOI18N
+        jLabel1.setText("Nombre y Apellido");
 
-        name.setBackground(new java.awt.Color(102, 102, 102));
-        name.setFont(new java.awt.Font("sansserif", 2, 18)); // NOI18N
+        name.setBackground(new java.awt.Color(0, 0, 0));
+        name.setFont(new java.awt.Font("Adwaita Sans", 0, 18)); // NOI18N
+        name.setForeground(new java.awt.Color(255, 255, 255));
+        name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameActionPerformed(evt);
+            }
+        });
 
-        position.setBackground(new java.awt.Color(102, 102, 102));
-        position.setFont(new java.awt.Font("sansserif", 2, 18)); // NOI18N
+        position.setBackground(new java.awt.Color(0, 0, 0));
+        position.setFont(new java.awt.Font("Adwaita Sans", 0, 18)); // NOI18N
+        position.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("sansserif", 2, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Adwaita Sans", 0, 18)); // NOI18N
         jLabel2.setText("Cargo");
 
-        account.setBackground(new java.awt.Color(102, 102, 102));
-        account.setFont(new java.awt.Font("sansserif", 2, 18)); // NOI18N
+        account.setBackground(new java.awt.Color(0, 0, 0));
+        account.setFont(new java.awt.Font("Adwaita Sans", 0, 18)); // NOI18N
+        account.setForeground(new java.awt.Color(255, 255, 255));
 
-        management.setBackground(new java.awt.Color(102, 102, 102));
-        management.setFont(new java.awt.Font("sansserif", 2, 18)); // NOI18N
+        management.setBackground(new java.awt.Color(0, 0, 0));
+        management.setFont(new java.awt.Font("Adwaita Sans", 0, 18)); // NOI18N
+        management.setForeground(new java.awt.Color(255, 255, 255));
         management.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 managementActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("sansserif", 2, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Adwaita Sans", 0, 18)); // NOI18N
         jLabel3.setText("Correo Corporativo");
 
-        jLabel5.setFont(new java.awt.Font("sansserif", 2, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Adwaita Sans", 0, 18)); // NOI18N
         jLabel5.setText("Gerencia");
 
-        location.setBackground(new java.awt.Color(102, 102, 102));
-        location.setFont(new java.awt.Font("sansserif", 2, 18)); // NOI18N
+        location.setBackground(new java.awt.Color(0, 0, 0));
+        location.setFont(new java.awt.Font("Adwaita Sans", 0, 18)); // NOI18N
+        location.setForeground(new java.awt.Color(255, 255, 255));
         location.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 locationActionPerformed(evt);
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("sansserif", 2, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Adwaita Sans", 0, 18)); // NOI18N
         jLabel6.setText("Ubicación");
 
-        phone.setBackground(new java.awt.Color(102, 102, 102));
-        phone.setFont(new java.awt.Font("sansserif", 2, 18)); // NOI18N
+        phone.setBackground(new java.awt.Color(0, 0, 0));
+        phone.setFont(new java.awt.Font("Adwaita Sans", 0, 18)); // NOI18N
+        phone.setForeground(new java.awt.Color(255, 255, 255));
         phone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 phoneActionPerformed(evt);
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("sansserif", 2, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Adwaita Sans", 0, 18)); // NOI18N
         jLabel7.setText("Telefono");
+
+        viewdata.setBackground(new java.awt.Color(0, 204, 255));
+        viewdata.setForeground(new java.awt.Color(0, 0, 0));
+        viewdata.setText("View Data");
+        viewdata.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewdataActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,33 +189,37 @@ public class Showpanel extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(31, 31, 31)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(position, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(39, 39, 39)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel6))
-                                .addGap(125, 125, 125))
+                                .addComponent(phone)
+                                .addGap(118, 118, 118))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(newcontact)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(deletecontact, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(181, 181, 181)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(position, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(75, 75, 75)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(location, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6))
+                        .addGap(125, 125, 125)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(account, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(management, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(savedata, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(25, Short.MAX_VALUE))
+                            .addComponent(location, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(newcontact, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deletecontact, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(savedata)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(viewdata)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,7 +246,8 @@ public class Showpanel extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newcontact)
                     .addComponent(deletecontact)
-                    .addComponent(savedata))
+                    .addComponent(savedata)
+                    .addComponent(viewdata))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -343,63 +372,64 @@ public class Showpanel extends javax.swing.JFrame {
     }//GEN-LAST:event_deletecontactActionPerformed
 
     private void savedataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savedataActionPerformed
-        // 1. Verificar si hay algo que guardar
-        if (listusers.isEmpty()) {
-            JOptionPane.showMessageDialog(this, 
-            "No hay registros nuevos para guardar.", 
-            "Lista Vacía", 
-            JOptionPane.INFORMATION_MESSAGE);
-            return; // detiene el proceso
+if (listusers.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "No hay registros nuevos para guardar.");
+        return;
     }
-        //
-        String sql = "INSERT INTO users (name, account, position, management, phone, location) " +
+
+    String sql = "INSERT INTO users (name, account, position, management, phone, location) " +
                  "VALUES (?, ?, ?, ?, ?, ?)";
+    
+    Postgress_database database = new Postgress_database();
+
+    // 1. Usamos try-with-resources para la conexión.
+    // Esto asegura que la conexión SIEMPRE se cierre, sin un 'finally'.
+    try (Connection conn = database.conectar()) {
+
+        // 2. ¡AQUÍ ESTÁ LA PARTE MANUAL!
+        // Apagamos el auto-guardado.
+        conn.setAutoCommit(false);
         
-        //Crear instancia de la base de datos
-        Postgress_database database = new Postgress_database();
+        // 3. Preparamos la consulta
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            for (User user : listusers) {
+                // 4. Llenamos los datos
+                pstmt.setString(1, user.getName());
+                pstmt.setString(2, user.getAccount());
+                pstmt.setString(3, user.getPosition());
+                pstmt.setString(4, user.getManagement());
+                pstmt.setString(5, user.getPhone());
+                pstmt.setString(6, user.getLocation());
+                
+                // 5. Ejecutamos, pero NO se guarda en la BD (solo se prepara)
+                pstmt.executeUpdate();
+            }
+        } // El PreparedStatement se cierra aquí
         
-        // 3. Usar "try-with-resources" para asegurar que la conexión se cierre
-       try (Connection conn = database.conectar();
-         PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-        // 4. Recorrer tu ArrayList de usuarios
-        for (User user : listusers) {
-            // 5. Asignar los valores a los "?" del SQL
-            pstmt.setString(1, user.getName());
-            pstmt.setString(2, user.getAccount());
-            pstmt.setString(3, user.getPosition());
-            pstmt.setString(4, user.getManagement());
-            pstmt.setString(5, user.getPhone());
-            pstmt.setString(6, user.getLocation());
-
-            // 6. Añadir la consulta al lote (en lugar de ejecutarla 1 por 1)
-            pstmt.addBatch();
-        }
-
-        // 7. Ejecutar todas las consultas del lote de una sola vez
-        int[] resultados = pstmt.executeBatch();
-
-        // 8. Confirmar la transacción
+        // 6. Si el bucle terminó sin errores, GUARDAMOS TODO DE GOLPE.
         conn.commit();
 
-        // 9. Informar al usuario y limpiar
-        JOptionPane.showMessageDialog(this, 
-                "¡Se guardaron " + resultados.length + " registros exitosamente en la base de datos!", 
-                "Guardado Exitoso", 
+        // 7. Informar al usuario y limpiar
+        JOptionPane.showMessageDialog(this,
+                "¡Se guardaron " + listusers.size() + " registros exitosamente!",
+                "Guardado Exitoso",
                 JOptionPane.INFORMATION_MESSAGE);
-
-        // 10. Limpiar la lista y la tabla para evitar guardar duplicados
-        listusers.clear();       // Vacía la lista en memoria
-        dtm.setRowCount(0);      // Borra todas las filas de la tabla visual
+        
+        listusers.clear();
+        dtm.setRowCount(0);
 
     } catch (SQLException e) {
-        // 11. Manejar cualquier error de SQL
-        JOptionPane.showMessageDialog(this, 
-                "Error al guardar en la base de datos:\n" + e.getMessage(), 
-                "Error SQL", 
+        // 8. SI HAY UN ERROR, EL 'conn.commit()' NUNCA SE EJECUTÓ.
+        // La base de datos descartará automáticamente los cambios.
+        JOptionPane.showMessageDialog(this,
+                "Error al guardar. No se guardó ningún registro.\n" + e.getMessage(),
+                "Error SQL",
                 JOptionPane.ERROR_MESSAGE);
         e.printStackTrace();
     }
+    // 9. No necesitamos 'finally' ni 'conn.close()'. El 'try-with-resources' lo hace solo.
+
+     
     }//GEN-LAST:event_savedataActionPerformed
 
     private void managementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managementActionPerformed
@@ -413,6 +443,50 @@ public class Showpanel extends javax.swing.JFrame {
     private void phoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_phoneActionPerformed
+
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameActionPerformed
+
+    private void viewdataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewdataActionPerformed
+        // limpiar tabla para no mostrar duplicados
+        dtm.setRowCount(0);
+        
+        //Usamos la consulta para mostrar la información de la base de datos
+        String sql = "SELECT * FROM users ORDER BY name ASC";
+        
+        //creamos la instalacia de la base de datos
+        Postgress_database database = new Postgress_database();
+        
+try (Connection conn = database.conectar();
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(sql)) {
+
+        while (rs.next()) {
+            
+            // 2. Creamos la fila
+            Object[] fila = new Object[6];
+            
+            // 3. Llenamos la fila pidiendo la columna POR SU NOMBRE
+            // Esto es más seguro que usar números
+            fila[0] = rs.getString("name");
+            fila[1] = rs.getString("account");
+            fila[2] = rs.getString("position");
+            fila[3] = rs.getString("management");
+            fila[4] = rs.getString("phone");
+            fila[5] = rs.getString("location");
+
+            // 4. Añadimos la fila a la tabla visual
+            dtm.addRow(fila);
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar datos: " + e.getMessage());
+        e.printStackTrace();
+    }
+
+             
+    }//GEN-LAST:event_viewdataActionPerformed
 
     /**
      * @param args the command line arguments
@@ -436,5 +510,6 @@ public class Showpanel extends javax.swing.JFrame {
     private javax.swing.JTextField phone;
     private javax.swing.JTextField position;
     private javax.swing.JButton savedata;
+    private javax.swing.JButton viewdata;
     // End of variables declaration//GEN-END:variables
 }
